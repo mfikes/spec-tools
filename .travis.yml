@@ -1,6 +1,8 @@
 sudo: false
 language: clojure
 lein: 2.7.1
+before_install:
+  - curl -sSL https://raw.githubusercontent.com/cljs-oss/canary/master/scripts/install-canary.sh | bash
 script:
   - ./scripts/test.sh $TEST
   - ./scripts/submit-to-coveralls.sh $TEST

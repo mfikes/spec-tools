@@ -22,7 +22,7 @@
                    :jvm-opts ^:replace ["-server"]
                    ;:global-vars {*warn-on-reflection* true}
                    :dependencies [[org.clojure/clojure "1.9.0"]
-                                  [org.clojure/clojurescript "1.9.946"]
+                                  [org.clojure/clojurescript ~(or (System/getenv "CANARY_CLOJURESCRIPT_VERSION") "1.9.946")]
                                   [criterium "0.4.4"]
                                   [prismatic/schema "1.1.7"]
                                   [org.clojure/test.check "0.9.0"]
@@ -37,6 +37,7 @@
             "test-phantom" ["doo" "phantom" "test"]
             "test-advanced" ["doo" "phantom" "advanced-test"]
             "test-node" ["doo" "node" "node-test"]}
+  :tach {:test-runner-ns spec-tools.cljs-runner}
   ;; Below, :process-shim false is workaround for <https://github.com/bensu/doo/pull/141>
   :cljsbuild {:builds [{:id "test"
                         :source-paths ["src" "test/cljc" "test/cljs"]
